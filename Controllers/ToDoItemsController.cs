@@ -45,14 +45,22 @@ namespace ToDoApp.Controllers
     // To protect from overposting attacks, enable the specific properties you want to bind to, for
     // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
     [HttpPut("{id}")]
-    public async Task<IActionResult> PutToDoItem(long id, ToDoItemDTO toDoItem)
+    public async Task<IActionResult> PutToDoItem(long id, ToDoItemDTO dto)
     {
-      if (id != toDoItem.Id)
+      if (id != dto.Id)
       {
         return BadRequest();
       }
 
-      _context.Entry(toDoItem).State = EntityState.Modified;
+      var itm = await _context.ToDoItems.FindAsync(id);
+      if (itm == null)
+      {
+        return NotFound();
+      }
+      itm.Text = dto.Text;
+      itm.IsComplete = dto.IsComplete;
+
+      _context.Entry(itm).State = EntityState.Modified;
 
       try
       {
@@ -118,5 +126,7 @@ namespace ToDoApp.Controllers
           Text = todoItem.Text,
           IsComplete = todoItem.IsComplete
         };
+
+
   }
 }
