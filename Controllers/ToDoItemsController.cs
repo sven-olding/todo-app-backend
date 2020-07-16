@@ -87,7 +87,7 @@ namespace ToDoApp.Controllers
       _context.ToDoItems.Add(newItem);
       await _context.SaveChangesAsync();
 
-      return CreatedAtAction(nameof(GetToDoItem), new { id = toDoItem.Id }, ItemToDTO(newItem));
+      return CreatedAtAction(nameof(GetToDoItem), new { id = newItem.Id }, ItemToDTO(newItem));
     }
 
     // DELETE: api/ToDoItems/5
