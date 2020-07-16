@@ -21,6 +21,15 @@ namespace ToDoApp
     public void ConfigureServices(IServiceCollection services)
     {
       services.AddDbContext<ToDoContext>(options => options.UseNpgsql(Configuration.GetConnectionString("ToDoContext")));
+
+      services.AddCors(options => options.AddPolicy("CorsPolicy", builder =>
+      {
+        builder
+        .AllowAnyOrigin()
+        .AllowAnyMethod()
+        .AllowAnyHeader();
+      }));
+
       services.AddControllers();
     }
 
@@ -35,6 +44,8 @@ namespace ToDoApp
       app.UseHttpsRedirection();
 
       app.UseRouting();
+
+      app.UseCors("CorsPolicy");
 
       app.UseAuthorization();
 
