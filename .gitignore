@@ -431,3 +431,6 @@ $RECYCLE.BIN/
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+
+# Custom Configuration File
+serversettings.json
