@@ -1,0 +1,5 @@
+{
+  "ServerSettings": {
+    "DbConnectionString": "Host=dbhost.example.com;Port=5432;Database=todoapp;Username=user;Password=pass;Integrated Security=true;Pooling=true;"
+  }  
+}
